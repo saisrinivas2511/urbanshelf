@@ -2,34 +2,34 @@ import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, Modal, FlatList} from 'react-native';
 import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../../Constants/ScreenDimensions';
 import {COLORS} from '../../Constants/COLORS';
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import ArrowIcon from '../../Assets/Icons/ArrowIcon';
 
-interface Address {
+interface TimeOption {
   id: number;
-  label: string;
+  time: string;
 }
 
 interface DropdownProps {
-  addresses: Address[];
+  timeOptions: TimeOption[];
 }
 
-const defaultAddress: Address = {
-  id: 1, // Provide a default value for id
-  label: 'Green Way 3000, Sylhet', // Provide a default value for label
+const defaultTimeOption: TimeOption = {
+  id: 1,
+  time: '30 mins',
 };
-const Dropdown: React.FC<DropdownProps> = ({addresses}) => {
+
+const TimeDropdown: React.FC<DropdownProps> = ({timeOptions}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedAddress, setSelectedAddress] = useState<Address | null>(
-    defaultAddress,
+  const [selectedTime, setSelectedTime] = useState<TimeOption | null>(
+    defaultTimeOption,
   );
 
   const handleToggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleSelectAddress = (address: Address) => {
-    setSelectedAddress(address);
+  const handleSelectTime = (timeOption: TimeOption) => {
+    setSelectedTime(timeOption);
     setIsOpen(false);
   };
 
@@ -37,25 +37,29 @@ const Dropdown: React.FC<DropdownProps> = ({addresses}) => {
     <View>
       <Text
         style={{color: COLORS.gray1, fontFamily: 'Manrope-Bold', marginTop: 5}}>
-        DELIVERY TO
+       WITHIN
       </Text>
       <TouchableOpacity onPress={handleToggleDropdown}>
-        {selectedAddress && (
+        {selectedTime && (
           <View style={{flexDirection: 'row'}}>
             <Text style={{fontFamily: 'Manrope-Medium', color: COLORS.gray1}}>
-              {selectedAddress.label}
+              {selectedTime.time}
             </Text>
             <ArrowIcon />
           </View>
         )}
       </TouchableOpacity>
 
-      <Modal transparent={true} visible={isOpen} animationType="slide">
+      <Modal
+        transparent={true}
+        visible={isOpen}
+        animationType="slide"
+        onRequestClose={() => setIsOpen(false)}>
         <View
           style={{
             justifyContent: 'center',
             alignItems: 'center',
-            height: SCREEN_HEIGHT * 0.45,
+            height: SCREEN_HEIGHT * 0.4,
             width: SCREEN_WIDTH,
             backgroundColor: COLORS.white,
             position: 'absolute',
@@ -64,7 +68,7 @@ const Dropdown: React.FC<DropdownProps> = ({addresses}) => {
             borderRadius: 28,
           }}>
           <FlatList
-            data={addresses}
+            data={timeOptions}
             keyExtractor={item => item.id.toString()}
             renderItem={({item}) => (
               <View style={{}}>
@@ -78,9 +82,14 @@ const Dropdown: React.FC<DropdownProps> = ({addresses}) => {
                     backgroundColor: COLORS.blue1,
                     margin: 5,
                   }}
-                  onPress={() => handleSelectAddress(item)}>
-                  <Text style={{fontFamily: 'Manrope-SemiBold', margin: 5}}>
-                    {item.label}
+                  onPress={() => handleSelectTime(item)}>
+                  <Text
+                    style={{
+                      fontFamily: 'Manrope-SemiBold',
+                      margin: 5,
+                      color: COLORS.white,
+                    }}>
+                    {item.time}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -92,4 +101,4 @@ const Dropdown: React.FC<DropdownProps> = ({addresses}) => {
   );
 };
 
-export default Dropdown;
+export default TimeDropdown;
