@@ -14,5 +14,6 @@ export const COLORS = {
   gray1: '#F8F9FB',
   iconYellow:'#FFC83A',
   activeIconBackground:'#1E222B',
-  greyText:'rgba(248, 249, 251, 1)'
+  greyText:'rgba(248, 249, 251, 1)',
+  productDetails:'#616A7D'
 };
