@@ -7,9 +7,13 @@ import {
 } from 'react-native';
 import {COLORS} from '../../Constants/COLORS';
 import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../../Constants/ScreenDimensions';
+import BackIcon from '../../Assets/Icons/BackIcon';
 
 interface FilledButtonProps {
   title: string;
+  onPress: (event: GestureResponderEvent) => void;
+}
+interface BackButtonProps {
   onPress: (event: GestureResponderEvent) => void;
 }
 
@@ -25,6 +29,14 @@ export const TransparentButton: FC<FilledButtonProps> = ({title, onPress}) => {
   return (
     <TouchableOpacity style={styles.transparentButton} onPress={onPress}>
       <Text style={styles.transparentButtonText}>{title}</Text>
+    </TouchableOpacity>
+  );
+};
+
+export const BackButton: FC<BackButtonProps> = ({onPress}) => {
+  return (
+    <TouchableOpacity  onPress={onPress}>
+      <BackIcon/>
     </TouchableOpacity>
   );
 };
@@ -66,4 +78,5 @@ const styles = StyleSheet.create({
     color: COLORS.blue1,
     fontSize: 14,
   },
+ 
 });

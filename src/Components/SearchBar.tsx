@@ -9,7 +9,6 @@ const SearchBar = () => {
 
   const handleSearch = (text: string) => {
     setSearchText(text);
-    // Perform search logic here
   };
 
   return (

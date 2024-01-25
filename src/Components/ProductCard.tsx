@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {COLORS} from '../../Constants/COLORS';
 import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../../Constants/ScreenDimensions';
-import HeartIcon from '../../Assets/Icons/HeartIcon';
 import FavouritesIcon from '../../Assets/Icons/FavouritesIcon';
 import FavouritesFillIcon from '../../Assets/Icons/FavouritesFillIcon';
 import {useNavigation} from '@react-navigation/native';
