@@ -7,6 +7,7 @@ import CartIcon from '../Components/Cart';
 import Dropdown from '../Components/AddressDropdown';
 import TimeDropdown from '../Components/TimeDropdown';
 import OfferFlatlist from '../Components/offersflatlist';
+import RecommendedList from '../Components/RecommendedList';
 
 const Home = () => {
   const address = [
@@ -21,46 +22,51 @@ const Home = () => {
     {id: 3, time: '10 mins'},
   ];
   return (
-    <View>
-      <View style={styles.Header}>
-        <View
-          style={{
-            justifyContent: 'space-around',
-            flexDirection: 'row',
-            gap: SCREEN_WIDTH * 0.5,
-          }}>
-          <Text
+    <>
+      <View style={{backgroundColor:'white'}}>
+        <View style={styles.Header}>
+          <View
             style={{
-              marginTop: SCREEN_HEIGHT * 0.05,
-              marginLeft: SCREEN_WIDTH * 0.03,
-              marginBottom: SCREEN_HEIGHT * 0.04,
-              fontFamily: 'Manrope-SemiBold',
-              fontSize: 22,
-              color: COLORS.white,
+              justifyContent: 'space-around',
+              flexDirection: 'row',
+              gap: SCREEN_WIDTH * 0.5,
             }}>
-            Hey, Rahul
-          </Text>
-          {/* <BagIcon /> */}
-          <CartIcon quantity={1} />
-        </View>
+            <Text
+              style={{
+                marginTop: SCREEN_HEIGHT * 0.05,
+                marginLeft: SCREEN_WIDTH * 0.03,
+                marginBottom: SCREEN_HEIGHT * 0.04,
+                fontFamily: 'Manrope-SemiBold',
+                fontSize: 22,
+                color: COLORS.white,
+              }}>
+              Hey, Rahul
+            </Text>
+            {/* <BagIcon /> */}
+            <CartIcon quantity={1} />
+          </View>
 
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
-          <SearchBar />
+          <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <SearchBar />
+          </View>
+          <View
+            style={{
+              marginLeft: SCREEN_WIDTH * 0.04,
+              marginRight: SCREEN_WIDTH * 0.04,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}>
+            <Dropdown addresses={address} />
+            <TimeDropdown timeOptions={time} />
+          </View>
         </View>
-        <View
-          style={{
-            marginLeft: SCREEN_WIDTH * 0.04,
-            marginRight: SCREEN_WIDTH * 0.04,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}>
-          <Dropdown addresses={address} />
-          <TimeDropdown timeOptions={time} />
-        </View>
+        <OfferFlatlist />
+        <Text style={styles.title}>Recommended</Text>
       </View>
-      <OfferFlatlist />
-      <Text style={styles.title}>Recommended</Text>
-    </View>
+      <View style={{height: SCREEN_HEIGHT * 0.5  }}>
+        <RecommendedList />
+      </View>
+    </>
   );
 };
 
@@ -75,7 +81,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Manrope-Bold',
     fontSize: 30,
     color: COLORS.black1,
-    marginLeft:SCREEN_WIDTH*0.045
+    marginLeft: SCREEN_WIDTH * 0.045,
   },
   condition: {
     fontFamily: 'Manrope-SemiBold',

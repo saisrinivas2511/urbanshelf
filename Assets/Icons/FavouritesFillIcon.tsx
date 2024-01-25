@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { Path } from "react-native-svg";
-const HeartRedFill = (props:any) => (
+const FavouritesFillIcon = (props:any) => (
   <Svg
     width={15}
     height={14}
@@ -15,4 +15,4 @@ const HeartRedFill = (props:any) => (
     />
   </Svg>
 );
-export default HeartRedFill;
+export default FavouritesFillIcon;
