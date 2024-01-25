@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../../Constants/ScreenDimensions';
 import {COLORS} from '../../Constants/COLORS';
 import SearchBar from '../Components/SearchBar';
-import CartIcon from '../Components/Cart';
+import { CartIcon } from '../Components/Cart';
 import Dropdown from '../Components/AddressDropdown';
 import TimeDropdown from '../Components/TimeDropdown';
 import OfferFlatlist from '../Components/offersflatlist';

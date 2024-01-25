@@ -16,11 +16,21 @@ import MoreIcon from '../../Assets/Icons/MoreIcon';
 import {StatusBar, View, ViewStyle} from 'react-native';
 import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../../Constants/ScreenDimensions';
 import {COLORS} from '../../Constants/COLORS';
+import {createStackNavigator} from '@react-navigation/stack';
+import ProductDetails from '../Screens/ProductDetails';
 
 interface FocusedViewProps {
   focused: boolean;
 }
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator(); // Create a stack navigator
+
+const HomeStack = () => (
+  <Stack.Navigator screenOptions={{headerShown:false}}>
+    <Stack.Screen name="Home" component={Home} />
+    <Stack.Screen name="ProductDetails" component={ProductDetails} />
+  </Stack.Navigator>
+);
 
 export const BottomNavigator = () => {
   return (
@@ -63,7 +73,7 @@ export const BottomNavigator = () => {
               height: SCREEN_HEIGHT * 0.09,
             },
           })}>
-          <Tab.Screen name="Home" component={Home} />
+          <Tab.Screen name="Home" component={HomeStack} />
           <Tab.Screen name="Category" component={Category} />
           <Tab.Screen name="favourite" component={Favourite} />
           <Tab.Screen name="More" component={More} />

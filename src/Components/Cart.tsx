@@ -1,11 +1,11 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import BagIcon from '../../Assets/Icons/bagIcon';
+import BagIcon from '../../Assets/Icons/BagIcon';
 import {COLORS} from '../../Constants/COLORS';
 import {SCREEN_HEIGHT} from '../../Constants/ScreenDimensions';
 // import {navigate} from '../utils/navigationUtils';
 
-const CartIcon = ({quantity}) => {
+export const CartIcon = ({quantity}) => {
   return (
     <TouchableOpacity onPress={() => console.log('hello')}>
       <BagIcon height={20} width={20} />
@@ -19,7 +19,19 @@ const CartIcon = ({quantity}) => {
   );
 };
 
-export default CartIcon;
+export const BlackCartIcon = ({quantity}) => {
+  return (
+    <TouchableOpacity onPress={() => console.log('hello')}>
+      <BagIcon height={20} width={20} color={'black'} />
+
+      {quantity === 0 ? null : (
+        <View style={styles.whiteCircle}>
+          <Text style={styles.bagQuantityText}>{quantity}</Text>
+        </View>
+      )}
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   circle: {
@@ -29,6 +41,20 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 2,
     borderColor: COLORS.blue1,
+    backgroundColor: COLORS.yellow,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    left: 6,
+    top: -8,
+  },
+  whiteCircle: {
+    marginTop: SCREEN_HEIGHT * 0.05,
+    width: 20,
+    height: 20,
+    borderRadius: 50,
+    borderWidth: 2,
+    borderColor: COLORS.gray1,
     backgroundColor: COLORS.yellow,
     justifyContent: 'center',
     alignItems: 'center',
