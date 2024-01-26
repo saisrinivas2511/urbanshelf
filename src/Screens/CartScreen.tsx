@@ -101,7 +101,7 @@ const CartScreen = () => {
           <Text style={styles.emptyCartText}>Uh-Oh ! Looks Like Your Cart Is Empty</Text>
         </View>
       ) : (
-        <View>
+        <View style={{flex:1}}>
           <FlatList
             style={{marginBottom: SCREEN_HEIGHT * 0.4}}
             data={groupedCartProducts}
