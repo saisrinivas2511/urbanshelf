@@ -83,7 +83,7 @@ const CartScreen = () => {
   );
 
   return (
-    <View style={{flex:1}}>
+    <View style={{flex: 1}}>
       <View
         style={{
           flexDirection: 'row',
@@ -92,46 +92,58 @@ const CartScreen = () => {
         }}>
         <BackButton onPress={() => navigation.goBack()} />
       </View>
-      <FlatList
-        style={{marginBottom: SCREEN_HEIGHT * 0.4}}
-        data={groupedCartProducts}
-        keyExtractor={item => item.id.toString()}
-        renderItem={renderCartItem}
-      />
-      <Text style={styles.editText} onPress={toggleEditMode}>
-        {editMode ? 'Done' : 'Edit'}
-      </Text>
-      <View
-        style={{
-          backgroundColor: '#E7ECF0',
-          margin: 10,
-          height: SCREEN_HEIGHT * 0.4,
-          width: SCREEN_WIDTH * 0.95,
-          position: 'absolute',
-          bottom: -50,
-          borderRadius: 30,
-          alignItems: 'center',
-          paddingVertical: 20,
-          //   paddingHorizontal: 35,
-        }}>
-     <View style={styles.checkoutContainer}>
-        <View style={styles.checkoutRow}>
-          <Text style={styles.checkOutLabel}>Subtotal:</Text>
-          <Text style={styles.checkOutValue}>${subtotal.toFixed(2)}</Text>
+      {cartProducts.length === 0 ? (
+        <View style={styles.emptyCartContainer}>
+          <Image
+            source={require('../../Assets/Images/EmptyCart.jpg')}
+            style={styles.emptyCartImage}
+          />
+          <Text style={styles.emptyCartText}>Uh-Oh ! Looks Like Your Cart Is Empty</Text>
         </View>
-        <View style={styles.checkoutRow}>
-          <Text style={styles.checkOutLabel}>Delivery:</Text>
-          <Text style={styles.checkOutValue}>${deliveryFee}</Text>
+      ) : (
+        <View>
+          <FlatList
+            style={{marginBottom: SCREEN_HEIGHT * 0.4}}
+            data={groupedCartProducts}
+            keyExtractor={item => item.id.toString()}
+            renderItem={renderCartItem}
+          />
+          <Text style={styles.editText} onPress={toggleEditMode}>
+            {editMode ? 'Done' : 'Edit'}
+          </Text>
+          <View
+            style={{
+              backgroundColor: '#E7ECF0',
+              margin: 10,
+              height: SCREEN_HEIGHT * 0.4,
+              width: SCREEN_WIDTH * 0.95,
+              position: 'absolute',
+              bottom: -50,
+              borderRadius: 30,
+              alignItems: 'center',
+              paddingVertical: 20,
+              //   paddingHorizontal: 35,
+            }}>
+            <View style={styles.checkoutContainer}>
+              <View style={styles.checkoutRow}>
+                <Text style={styles.checkOutLabel}>Subtotal:</Text>
+                <Text style={styles.checkOutValue}>${subtotal.toFixed(2)}</Text>
+              </View>
+              <View style={styles.checkoutRow}>
+                <Text style={styles.checkOutLabel}>Delivery:</Text>
+                <Text style={styles.checkOutValue}>${deliveryFee}</Text>
+              </View>
+              <View style={styles.checkoutRow}>
+                <Text style={styles.checkOutLabel}>Total:</Text>
+                <Text style={styles.checkOutValue}>${total.toFixed(2)}</Text>
+              </View>
+              <TouchableOpacity style={styles.checkOutBtn}>
+                <Text style={styles.checkOutBtnText}>Proceed To Checkout</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
-        <View style={styles.checkoutRow}>
-          <Text style={styles.checkOutLabel}>Total:</Text>
-          <Text style={styles.checkOutValue}>${total.toFixed(2)}</Text>
-        </View>
-        <TouchableOpacity style={styles.checkOutBtn}>
-          <Text style={styles.checkOutBtnText}>Proceed To Checkout</Text>
-        </TouchableOpacity>
-      </View>
-      </View>
+      )}
     </View>
   );
 };
@@ -193,7 +205,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#E7ECF0',
     margin: 10,
     borderRadius: 30,
-  
+
     paddingVertical: 20,
   },
 
@@ -201,7 +213,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 10,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
   checkOutLabel: {
     fontFamily: 'Manrope-SemiBold',
@@ -221,6 +233,22 @@ const styles = StyleSheet.create({
     height: SCREEN_HEIGHT * 0.07,
     width: SCREEN_WIDTH * 0.85,
     // padding:5
+  },
+  emptyCartContainer: {
+    backgroundColor:COLORS.white,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  emptyCartImage: {
+    width: SCREEN_HEIGHT,
+    height: SCREEN_WIDTH,
+    resizeMode: 'contain',
+  },
+  emptyCartText: {
+    fontFamily: 'Manrope-Regular',
+    fontSize: 16,
+    color: COLORS.gray,
+    marginBottom: 20,
   },
 });
 export default CartScreen;
