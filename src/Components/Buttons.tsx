@@ -8,8 +8,8 @@ import {
 import {COLORS} from '../../Constants/COLORS';
 import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../../Constants/ScreenDimensions';
 import BackIcon from '../../Assets/Icons/BackIcon';
-import PlusIcon from 'react-native-vector-icons/Octicons'
-import MinusIcon from 'react-native-vector-icons/Entypo'
+import PlusIcon from 'react-native-vector-icons/Octicons';
+import MinusIcon from 'react-native-vector-icons/Entypo';
 
 interface FilledButtonProps {
   title: string;
@@ -42,29 +42,33 @@ export const TransparentButton: FC<FilledButtonProps> = ({title, onPress}) => {
 
 export const BackButton: FC<BackButtonProps> = ({onPress}) => {
   return (
-    <TouchableOpacity  onPress={onPress}>
-      <BackIcon/>
+    <TouchableOpacity onPress={onPress}>
+      <BackIcon />
     </TouchableOpacity>
   );
 };
-export const PlusButton: React.FC<PlusButtonProps> = ({ onPress, disabled = false }) => {
+export const PlusButton: React.FC<PlusButtonProps> = ({
+  onPress,
+  disabled = false,
+}) => {
   return (
     <TouchableOpacity
       style={[styles.plusButton, disabled && styles.disabledButton]}
       onPress={onPress}
-      disabled={disabled}
-    >
+      disabled={disabled}>
       <PlusIcon name="plus" size={12} color={COLORS.white} />
     </TouchableOpacity>
   );
 };
-export const MinusButton: React.FC<PlusButtonProps> = ({ onPress, disabled = false }) => {
+export const MinusButton: React.FC<PlusButtonProps> = ({
+  onPress,
+  disabled = false,
+}) => {
   return (
     <TouchableOpacity
       style={[styles.plusButton, disabled && styles.disabledButton]}
       onPress={onPress}
-      disabled={disabled}
-    >
+      disabled={disabled}>
       <MinusIcon name="minus" size={12} color={COLORS.white} />
     </TouchableOpacity>
   );
@@ -108,15 +112,15 @@ const styles = StyleSheet.create({
     color: COLORS.blue1,
     fontSize: 14,
   },
- plusButton:{
-  height:24,
-  width:24,
-  borderRadius:12,
-  backgroundColor:COLORS.blue1,
-  justifyContent:'center',
-  alignItems:'center'
- },
- disabledButton: {
-  opacity: 0.5,
-},
+  plusButton: {
+    height: 24,
+    width: 24,
+    borderRadius: 12,
+    backgroundColor: COLORS.blue1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  disabledButton: {
+    opacity: 0.5,
+  },
 });

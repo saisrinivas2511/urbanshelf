@@ -27,10 +27,10 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator(); // Create a stack navigator
 
 const HomeStack = () => (
-  <Stack.Navigator screenOptions={{headerShown:false}}>
+  <Stack.Navigator screenOptions={{headerShown: false}}>
     <Stack.Screen name="Home" component={Home} />
     <Stack.Screen name="ProductDetails" component={ProductDetails} />
-    <Stack.Screen name="CartScreen" component={CartScreen}/>
+    <Stack.Screen name="CartScreen" component={CartScreen} />
   </Stack.Navigator>
 );
 

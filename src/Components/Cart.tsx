@@ -3,13 +3,13 @@ import React from 'react';
 import BagIcon from '../../Assets/Icons/BagIcon';
 import {COLORS} from '../../Constants/COLORS';
 import {SCREEN_HEIGHT} from '../../Constants/ScreenDimensions';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 // import {navigate} from '../utils/navigationUtils';
 
 export const CartIcon = ({quantity}) => {
-  const navigation =useNavigation()
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity onPress={()=>navigation.navigate('CartScreen')}>
+    <TouchableOpacity onPress={() => navigation.navigate('CartScreen')}>
       <BagIcon height={20} width={20} />
 
       {quantity === 0 ? null : (
@@ -22,9 +22,9 @@ export const CartIcon = ({quantity}) => {
 };
 
 export const BlackCartIcon = ({quantity}) => {
-  const navigation =useNavigation()
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity onPress={()=>navigation.navigate('CartScreen')}>
+    <TouchableOpacity onPress={() => navigation.navigate('CartScreen')}>
       <BagIcon height={20} width={20} color={'black'} />
 
       {quantity === 0 ? null : (

@@ -3,12 +3,12 @@ import React, {useState} from 'react';
 import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../../Constants/ScreenDimensions';
 import {COLORS} from '../../Constants/COLORS';
 import SearchBar from '../Components/SearchBar';
-import { CartIcon } from '../Components/Cart';
+import {CartIcon} from '../Components/Cart';
 import Dropdown from '../Components/AddressDropdown';
 import TimeDropdown from '../Components/TimeDropdown';
 import OfferFlatlist from '../Components/offersflatlist';
 import RecommendedList from '../Components/RecommendedList';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
 const Home = () => {
   const address = [
@@ -23,12 +23,12 @@ const Home = () => {
     {id: 3, time: '10 mins'},
   ];
 
-  const cart = useSelector(state=>state.cart.products)
-  const cartQuantity = cart.length
-console.log('this is no in cart',cartQuantity)
+  const cart = useSelector(state => state.cart.products);
+  const cartQuantity = cart.length;
+  console.log('this is no in cart', cartQuantity);
   return (
     <>
-      <View style={{backgroundColor:'white'}}>
+      <View style={{backgroundColor: 'white'}}>
         <View style={styles.Header}>
           <View
             style={{
@@ -68,7 +68,7 @@ console.log('this is no in cart',cartQuantity)
         <OfferFlatlist />
         <Text style={styles.title}>Recommended</Text>
       </View>
-      <View style={{height: SCREEN_HEIGHT * 0.5  }}>
+      <View style={{height: SCREEN_HEIGHT * 0.5}}>
         <RecommendedList />
       </View>
     </>

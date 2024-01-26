@@ -98,10 +98,12 @@ const CartScreen = () => {
             source={require('../../Assets/Images/EmptyCart.jpg')}
             style={styles.emptyCartImage}
           />
-          <Text style={styles.emptyCartText}>Uh-Oh ! Looks Like Your Cart Is Empty</Text>
+          <Text style={styles.emptyCartText}>
+            Uh-Oh ! Looks Like Your Cart Is Empty
+          </Text>
         </View>
       ) : (
-        <View style={{flex:1}}>
+        <View style={{flex: 1}}>
           <FlatList
             style={{marginBottom: SCREEN_HEIGHT * 0.4}}
             data={groupedCartProducts}
@@ -235,7 +237,7 @@ const styles = StyleSheet.create({
     // padding:5
   },
   emptyCartContainer: {
-    backgroundColor:COLORS.white,
+    backgroundColor: COLORS.white,
     justifyContent: 'center',
     alignItems: 'center',
   },

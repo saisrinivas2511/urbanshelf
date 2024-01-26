@@ -14,11 +14,10 @@ import {
 } from '../Redux/Slices/FavouritesSlice';
 
 const ProductCard = ({item}) => {
-
   const navigation = useNavigation();
 
   const dispatch = useDispatch();
-  
+
   const handleAddToCart = () => {
     dispatch(addProduct(item));
   };
@@ -47,7 +46,7 @@ const ProductCard = ({item}) => {
   const isProductInFavourites = favourites.some(
     favProduct => favProduct.id === item.id,
   );
- 
+
   return (
     <View
       style={{

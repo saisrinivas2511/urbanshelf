@@ -49,7 +49,11 @@ const Dropdown: React.FC<DropdownProps> = ({addresses}) => {
         )}
       </TouchableOpacity>
 
-      <Modal transparent={true} visible={isOpen} animationType="slide" onRequestClose={()=>setIsOpen(false)}>
+      <Modal
+        transparent={true}
+        visible={isOpen}
+        animationType="slide"
+        onRequestClose={() => setIsOpen(false)}>
         <View
           style={{
             justifyContent: 'center',
@@ -78,7 +82,12 @@ const Dropdown: React.FC<DropdownProps> = ({addresses}) => {
                     margin: 5,
                   }}
                   onPress={() => handleSelectAddress(item)}>
-                  <Text style={{fontFamily: 'Manrope-SemiBold', margin: 5,color:COLORS.white}}>
+                  <Text
+                    style={{
+                      fontFamily: 'Manrope-SemiBold',
+                      margin: 5,
+                      color: COLORS.white,
+                    }}>
                     {item.label}
                   </Text>
                 </TouchableOpacity>

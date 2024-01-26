@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {Image, Text, View, StyleSheet, FlatList, ScrollView} from 'react-native';
+import {
+  Image,
+  Text,
+  View,
+  StyleSheet,
+  FlatList,
+  ScrollView,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchProductById} from '../Redux/Slices/ProductInfo';
 import {
@@ -12,9 +19,9 @@ import Rating from '../Components/Rating';
 import {BlackCartIcon} from '../Components/Cart';
 import {useNavigation} from '@react-navigation/native';
 import {COLORS} from '../../Constants/COLORS';
-import { addProduct, removeProduct } from '../Redux/Slices/CartSlice';
+import {addProduct, removeProduct} from '../Redux/Slices/CartSlice';
 
-const ProductDetails = ({route}:{route:any}) => {
+const ProductDetails = ({route}: {route: any}) => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const {productId} = route.params;
@@ -55,18 +62,17 @@ const ProductDetails = ({route}:{route:any}) => {
     dispatch(removeProduct(productId));
   };
 
-  const handleBuyNow=()=>{
+  const handleBuyNow = () => {
     dispatch(addProduct(productDetails));
-    navigation.navigate('CartScreen')
-  }
+    navigation.navigate('CartScreen');
+  };
   const cartProducts = useSelector(state => state.cart.products);
-useEffect(() => {
-  
-  console.log('this is in cart',cartProducts)
-}, [cartProducts])
-const cartQuantity = cartProducts.length
+  useEffect(() => {
+    console.log('this is in cart', cartProducts);
+  }, [cartProducts]);
+  const cartQuantity = cartProducts.length;
 
-console.log('this is no in cart',cartQuantity)
+  console.log('this is no in cart', cartQuantity);
   return (
     <ScrollView>
       <View
@@ -108,7 +114,10 @@ console.log('this is no in cart',cartQuantity)
                 key={index}
                 style={[
                   styles.paginationTile,
-                  {backgroundColor: index === currentPage ? COLORS.yellow : 'gray'},
+                  {
+                    backgroundColor:
+                      index === currentPage ? COLORS.yellow : 'gray',
+                  },
                 ]}
               />
             ))}
@@ -129,10 +138,7 @@ console.log('this is no in cart',cartQuantity)
           justifyContent: 'space-between',
           marginTop: 20,
         }}>
-        <TransparentButton
-          title="Add To Cart"
-          onPress={handleAddToCart}
-        />
+        <TransparentButton title="Add To Cart" onPress={handleAddToCart} />
         <FilledButton title="Buy Now" onPress={handleBuyNow} />
       </View>
       <Text style={styles.detailsText}>Details</Text>
@@ -161,7 +167,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     margin: 8,
-    marginBottom:30
+    marginBottom: 30,
   },
   price: {
     fontFamily: 'Manrope-Bold',
@@ -209,11 +215,10 @@ const styles = StyleSheet.create({
   paginationContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    marginLeft:10,
+    marginLeft: 10,
     marginTop: -15,
   },
   paginationTile: {
-  
     width: 28,
     height: 5,
     borderRadius: 4,

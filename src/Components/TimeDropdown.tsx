@@ -37,7 +37,7 @@ const TimeDropdown: React.FC<DropdownProps> = ({timeOptions}) => {
     <View>
       <Text
         style={{color: COLORS.gray1, fontFamily: 'Manrope-Bold', marginTop: 5}}>
-       WITHIN
+        WITHIN
       </Text>
       <TouchableOpacity onPress={handleToggleDropdown}>
         {selectedTime && (

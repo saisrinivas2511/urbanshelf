@@ -6,8 +6,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {fetchProducts} from '../Redux/Slices/ProductInfo';
 
 const RecommendedList = () => {
- 
-
   const dispatch = useDispatch();
   useEffect(() => {
     fetchProductData();
@@ -38,7 +36,7 @@ const RecommendedList = () => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      {loading==='loading' ? (
+      {loading === 'loading' ? (
         <ActivityIndicator size="large" color="#000" />
       ) : (
         <FlatList
