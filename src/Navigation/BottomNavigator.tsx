@@ -18,6 +18,7 @@ import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../../Constants/ScreenDimensions';
 import {COLORS} from '../../Constants/COLORS';
 import {createStackNavigator} from '@react-navigation/stack';
 import ProductDetails from '../Screens/ProductDetails';
+import CartScreen from '../Screens/CartScreen';
 
 interface FocusedViewProps {
   focused: boolean;
@@ -29,6 +30,7 @@ const HomeStack = () => (
   <Stack.Navigator screenOptions={{headerShown:false}}>
     <Stack.Screen name="Home" component={Home} />
     <Stack.Screen name="ProductDetails" component={ProductDetails} />
+    <Stack.Screen name="CartScreen" component={CartScreen}/>
   </Stack.Navigator>
 );
 

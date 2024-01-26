@@ -12,8 +12,9 @@ import Rating from '../Components/Rating';
 import {BlackCartIcon} from '../Components/Cart';
 import {useNavigation} from '@react-navigation/native';
 import {COLORS} from '../../Constants/COLORS';
+import { addProduct, removeProduct } from '../Redux/Slices/CartSlice';
 
-const ProductDetails = ({route}) => {
+const ProductDetails = ({route}:{route:any}) => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const {productId} = route.params;
@@ -46,6 +47,26 @@ const ProductDetails = ({route}) => {
   const handlePageChange = index => {
     setCurrentPage(index);
   };
+  const handleAddToCart = () => {
+    dispatch(addProduct(productDetails));
+  };
+
+  const handleRemoveFromCart = () => {
+    dispatch(removeProduct(productId));
+  };
+
+  const handleBuyNow=()=>{
+    dispatch(addProduct(productDetails));
+    navigation.navigate('CartScreen')
+  }
+  const cartProducts = useSelector(state => state.cart.products);
+useEffect(() => {
+  
+  console.log('this is in cart',cartProducts)
+}, [cartProducts])
+const cartQuantity = cartProducts.length
+
+console.log('this is no in cart',cartQuantity)
   return (
     <ScrollView>
       <View
@@ -55,7 +76,7 @@ const ProductDetails = ({route}) => {
           margin: 20,
         }}>
         <BackButton onPress={() => navigation.goBack()} />
-        <BlackCartIcon quantity={3} />
+        <BlackCartIcon quantity={cartQuantity} />
       </View>
       <View style={styles.container}>
         <Text style={styles.title}>{productDetails?.title}</Text>
@@ -110,11 +131,9 @@ const ProductDetails = ({route}) => {
         }}>
         <TransparentButton
           title="Add To Cart"
-          onPress={() => {
-            console.log('hello');
-          }}
+          onPress={handleAddToCart}
         />
-        <FilledButton title="Buy Now" onPress={() => console.log('hello')} />
+        <FilledButton title="Buy Now" onPress={handleBuyNow} />
       </View>
       <Text style={styles.detailsText}>Details</Text>
       <Text style={styles.description}>{productDetails?.description}</Text>

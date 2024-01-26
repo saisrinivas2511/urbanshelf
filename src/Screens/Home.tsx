@@ -8,6 +8,7 @@ import Dropdown from '../Components/AddressDropdown';
 import TimeDropdown from '../Components/TimeDropdown';
 import OfferFlatlist from '../Components/offersflatlist';
 import RecommendedList from '../Components/RecommendedList';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
   const address = [
@@ -21,6 +22,10 @@ const Home = () => {
     {id: 2, time: '15 mins'},
     {id: 3, time: '10 mins'},
   ];
+
+  const cart = useSelector(state=>state.cart.products)
+  const cartQuantity = cart.length
+console.log('this is no in cart',cartQuantity)
   return (
     <>
       <View style={{backgroundColor:'white'}}>
@@ -43,7 +48,7 @@ const Home = () => {
               Hey, Rahul
             </Text>
             {/* <BagIcon /> */}
-            <CartIcon quantity={1} />
+            <CartIcon quantity={cartQuantity} />
           </View>
 
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
