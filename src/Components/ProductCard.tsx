@@ -8,28 +8,46 @@ import {useNavigation} from '@react-navigation/native';
 import {MinusButton, PlusButton} from './Buttons';
 import {useDispatch, useSelector} from 'react-redux';
 import {addProduct, removeProduct} from '../Redux/Slices/CartSlice';
+import {
+  addToFavourites,
+  removeFromFavourites,
+} from '../Redux/Slices/FavouritesSlice';
 
 const ProductCard = ({item}) => {
-  const [isFavourite, setIsFavourite] = useState(false);
+
   const navigation = useNavigation();
 
-  const toggleFavourite = () => {
-    setIsFavourite(!isFavourite);
-  };
-
   const dispatch = useDispatch();
+  
   const handleAddToCart = () => {
     dispatch(addProduct(item));
   };
+
   const handleRemoveFromCart = () => {
     dispatch(removeProduct(item.id));
   };
+
   const navigateToProductDetails = () => {
-    navigation.navigate('ProductDetails', {productId: item.id}); // Pass any necessary data to ProductDetails screen
+    navigation.navigate('ProductDetails', {productId: item.id});
   };
   const cartProducts = useSelector(state => state.cart.products);
+
   const isInCart = cartProducts.some(product => product.id === item.id);
 
+  const favourites = useSelector(state => state.favourites.products);
+
+  const handleAddToFavourites = () => {
+    dispatch(addToFavourites(item));
+  };
+
+  const handleRemoveFromFavourites = () => {
+    dispatch(removeFromFavourites(item.id));
+  };
+
+  const isProductInFavourites = favourites.some(
+    favProduct => favProduct.id === item.id,
+  );
+ 
   return (
     <View
       style={{
@@ -41,13 +59,19 @@ const ProductCard = ({item}) => {
         width: SCREEN_WIDTH * 0.4,
       }}>
       <TouchableOpacity onPress={navigateToProductDetails}>
-        <TouchableOpacity
-          style={{position: 'absolute', top: 10, left: 10, zIndex: 1}}
-          onPress={toggleFavourite}>
-          <View>
-            {isFavourite ? <FavouritesFillIcon /> : <FavouritesIcon />}
-          </View>
-        </TouchableOpacity>
+        {isProductInFavourites ? (
+          <TouchableOpacity
+            style={{position: 'absolute', top: 10, left: 10, zIndex: 1}}
+            onPress={handleRemoveFromFavourites}>
+            <FavouritesFillIcon />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={{position: 'absolute', top: 10, left: 10, zIndex: 1}}
+            onPress={handleAddToFavourites}>
+            <FavouritesIcon />
+          </TouchableOpacity>
+        )}
         <Image
           source={{uri: item.thumbnail}}
           style={{
@@ -85,7 +109,6 @@ const ProductCard = ({item}) => {
               position: 'absolute',
               bottom: 25,
               right: 10,
-              // padding: 7,
               flexDirection: 'row',
               justifyContent: 'space-around',
             }}>
